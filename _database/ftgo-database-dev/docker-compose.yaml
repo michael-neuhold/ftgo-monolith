@@ -1,0 +1,13 @@
+version: '3'
+services:
+  ftgo-monolith-database-dev:
+    image: mysql:latest
+    environment:
+      MYSQL_USER: 'mysqluser'
+      MYSQL_PASSWORD: 'mysqlpw'
+      MYSQL_ROOT_PASSWORD: 'mysqlrootpw'
+      MYSQL_DATABASE: 'monolith-db'
+    ports:
+      - "3308:3306"
+    expose:
+      - '3308'
