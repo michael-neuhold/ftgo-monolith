@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="[DEV] ftgo-monolith" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" value="dev" />
+    <module name="ftgo-monolith.ftgo-application.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="net.chrisrichardson.ftgo.FtgoApplicationMain" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
