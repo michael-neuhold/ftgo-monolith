@@ -1,4 +1,4 @@
-package net.chrisrichardson.ftgo.consumerservice.web;
+package net.chrisrichardson.ftgo.consumerservice.internal.web;
 
 import net.chrisrichardson.ftgo.common.PersonName;
 import net.chrisrichardson.ftgo.consumerservice.api.web.CreateConsumerResponse;

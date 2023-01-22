@@ -1,10 +1,12 @@
 package net.chrisrichardson.ftgo;
 
+import net.chrisrichardson.ftgo.consumerservice.main.ConfigProperties;
 import net.chrisrichardson.ftgo.consumerservice.main.ConsumerServiceConfiguration;
 import net.chrisrichardson.ftgo.orderservice.main.OrderServiceConfiguration;
 import net.chrisrichardson.ftgo.restaurantservice.RestaurantServiceConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -15,6 +17,7 @@ import org.springframework.context.annotation.Import;
 @Import({ConsumerServiceConfiguration.class,
         OrderServiceConfiguration.class,
         RestaurantServiceConfiguration.class})
+@EnableConfigurationProperties(ConfigProperties.class)
 public class FtgoApplicationMain {
 
   public static void main(String[] args) {
