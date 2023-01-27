@@ -1,7 +1,7 @@
 package net.chrisrichardson.ftgo.orderservice.domain;
 
 import io.micrometer.core.instrument.MeterRegistry;
-import net.chrisrichardson.ftgo.consumerservice.internal.ConsumerServiceInternalImpl;
+import net.chrisrichardson.ftgo.consumerservice.ConsumerService;
 import net.chrisrichardson.ftgo.domain.*;
 import net.chrisrichardson.ftgo.orderservice.web.MenuItemIdAndQuantity;
 import org.slf4j.Logger;
@@ -26,19 +26,19 @@ public class OrderService {
 
   private Optional<MeterRegistry> meterRegistry;
 
-  private ConsumerServiceInternalImpl consumerServiceInternalImpl;
+  private ConsumerService consumerService;
   private CourierRepository courierRepository;
   private Random random = new Random();
 
   public OrderService(OrderRepository orderRepository,
                       RestaurantRepository restaurantRepository,
                       Optional<MeterRegistry> meterRegistry,
-                      ConsumerServiceInternalImpl consumerServiceInternalImpl, CourierRepository courierRepository) {
+                      ConsumerService consumerService, CourierRepository courierRepository) {
 
     this.orderRepository = orderRepository;
     this.restaurantRepository = restaurantRepository;
     this.meterRegistry = meterRegistry;
-    this.consumerServiceInternalImpl = consumerServiceInternalImpl;
+    this.consumerService = consumerService;
     this.courierRepository = courierRepository;
   }
 
@@ -53,7 +53,7 @@ public class OrderService {
 
     Order order = new Order(consumerId, restaurant, orderLineItems);
 
-    consumerServiceInternalImpl.validateOrderForConsumer(consumerId, order.getOrderTotal());
+    consumerService.validateOrderForConsumer(consumerId, order.getOrderTotal());
 
     // TODO - charge a credit card too
 

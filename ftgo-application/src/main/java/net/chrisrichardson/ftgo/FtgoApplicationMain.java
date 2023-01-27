@@ -1,7 +1,7 @@
 package net.chrisrichardson.ftgo;
 
-import net.chrisrichardson.ftgo.consumerservice.main.ConfigProperties;
-import net.chrisrichardson.ftgo.consumerservice.main.ConsumerServiceConfiguration;
+import net.chrisrichardson.ftgo.consumerservice.ConfigProperties;
+import net.chrisrichardson.ftgo.consumerservice.ConsumerServiceConfiguration;
 import net.chrisrichardson.ftgo.orderservice.main.OrderServiceConfiguration;
 import net.chrisrichardson.ftgo.restaurantservice.RestaurantServiceConfiguration;
 import org.springframework.boot.SpringApplication;

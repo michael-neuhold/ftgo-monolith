@@ -1,4 +1,4 @@
-package net.chrisrichardson.ftgo.consumerservice.main;
+package net.chrisrichardson.ftgo.consumerservice;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -8,5 +8,7 @@ import org.springframework.context.annotation.Configuration;
 public class ConfigProperties {
 
     private ConsumerServiceImpl implementation;
+
+    private String consumerMicroServiceBaseUrl;
 
 }

@@ -2,7 +2,6 @@ package net.chrisrichardson.ftgo.consumerservice.internal;
 
 import net.chrisrichardson.ftgo.common.Money;
 import net.chrisrichardson.ftgo.common.PersonName;
-import net.chrisrichardson.ftgo.consumerservice.ConsumerService;
 import net.chrisrichardson.ftgo.consumerservice.internal.domain.ConsumerNotFoundException;
 import net.chrisrichardson.ftgo.domain.Consumer;
 import net.chrisrichardson.ftgo.domain.ConsumerRepository;
@@ -16,10 +15,15 @@ import java.util.Optional;
 @Service
 @Transactional
 @Qualifier("consumer-service-internal")
-public class ConsumerServiceInternalImpl implements ConsumerService {
+public class ConsumerServiceInternal implements net.chrisrichardson.ftgo.consumerservice.ConsumerService {
 
   @Autowired
   private ConsumerRepository consumerRepository;
+
+  @Override
+  public void hello() {
+    System.out.println("Hello from consumer service internal");
+  }
 
   @Override
   public void validateOrderForConsumer(long consumerId, Money orderTotal) {
@@ -29,8 +33,7 @@ public class ConsumerServiceInternalImpl implements ConsumerService {
 
   @Override
   public Consumer create(PersonName name) {
-    Consumer consumer = consumerRepository.save(new Consumer(name));
-    return consumer;
+    return consumerRepository.save(new Consumer(name));
   }
 
   @Override

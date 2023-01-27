@@ -1,4 +1,4 @@
-package net.chrisrichardson.ftgo.consumerservice.main;
+package net.chrisrichardson.ftgo.consumerservice;
 
 public enum ConsumerServiceImpl {
     INTERNAL,

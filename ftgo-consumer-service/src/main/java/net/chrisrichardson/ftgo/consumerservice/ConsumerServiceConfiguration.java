@@ -1,4 +1,4 @@
-package net.chrisrichardson.ftgo.consumerservice.main;
+package net.chrisrichardson.ftgo.consumerservice;
 
 import net.chrisrichardson.eventstore.examples.customersandorders.commonswagger.CommonSwaggerConfiguration;
 import net.chrisrichardson.ftgo.consumerservice.internal.web.ConsumerWebConfiguration;

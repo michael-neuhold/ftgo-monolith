@@ -1,6 +1,7 @@
 package net.chrisrichardson.ftgo.consumerservice;
 
-import net.chrisrichardson.ftgo.consumerservice.main.ConsumerServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public final class ConsumerServiceFactory {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ConsumerServiceFactory.class);
+
     @Autowired
     public ConsumerServiceFactory(@Qualifier("consumer-service-internal") ConsumerService consumerServiceInternal,
                                   @Qualifier("consumer-service-external") ConsumerService consumerServiceExternal,
@@ -17,7 +21,10 @@ public final class ConsumerServiceFactory {
         this.consumerServiceExternal = consumerServiceExternal;
         this.consumerServiceParallel = consumerServiceParallel;
         this.defaultImplementation = consumerServiceImpl;
-        System.out.println("DEFAULT IMPLEMENTATION --> " + consumerServiceImpl);
+        LOG.info("Default consumer service implementation: " + consumerServiceImpl);
+        consumerServiceInternal.hello();
+        consumerServiceExternal.hello();
+        consumerServiceParallel.hello();
     }
 
     private final ConsumerService consumerServiceInternal;

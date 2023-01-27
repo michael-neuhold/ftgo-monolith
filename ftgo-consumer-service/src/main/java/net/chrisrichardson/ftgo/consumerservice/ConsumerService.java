@@ -8,6 +8,8 @@ import java.util.Optional;
 
 public interface ConsumerService {
 
+    void hello();
+
     void validateOrderForConsumer(long consumerId, Money orderTotal);
 
     Consumer create(PersonName name);

@@ -23,6 +23,11 @@ public final class ConsumerServiceParallelImpl implements ConsumerService {
     ConsumerService consumerServiceExternal;
 
     @Override
+    public void hello() {
+        System.out.println("Hello from Consumer Service Parallel");
+    }
+
+    @Override
     public void validateOrderForConsumer(long consumerId, Money orderTotal) {
 
     }
@@ -36,4 +41,5 @@ public final class ConsumerServiceParallelImpl implements ConsumerService {
     public Optional<Consumer> findById(long consumerId) {
         return Optional.empty();
     }
+
 }

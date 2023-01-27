@@ -1,7 +1,7 @@
 package net.chrisrichardson.ftgo.orderservice.domain;
 
 import io.micrometer.core.instrument.MeterRegistry;
-import net.chrisrichardson.ftgo.consumerservice.internal.ConsumerServiceInternalImpl;
+import net.chrisrichardson.ftgo.consumerservice.ConsumerServiceFactory;
 import net.chrisrichardson.ftgo.domain.CourierRepository;
 import net.chrisrichardson.ftgo.domain.DomainConfiguration;
 import net.chrisrichardson.ftgo.domain.OrderRepository;
@@ -22,11 +22,12 @@ public class OrderConfiguration {
   public OrderService orderService(RestaurantRepository restaurantRepository,
                                    OrderRepository orderRepository,
                                    Optional<MeterRegistry> meterRegistry,
-                                   ConsumerServiceInternalImpl consumerServiceInternalImpl, CourierRepository courierRepository) {
+                                   ConsumerServiceFactory consumerServiceFactory,
+                                   CourierRepository courierRepository) {
     return new OrderService(orderRepository,
             restaurantRepository,
             meterRegistry,
-            consumerServiceInternalImpl, courierRepository);
+            consumerServiceFactory.defaultImpl(), courierRepository);
   }
 
   @Bean
