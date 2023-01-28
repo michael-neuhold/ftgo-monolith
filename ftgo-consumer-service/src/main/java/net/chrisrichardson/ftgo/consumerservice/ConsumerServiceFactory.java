@@ -22,9 +22,6 @@ public final class ConsumerServiceFactory {
         this.consumerServiceParallel = consumerServiceParallel;
         this.defaultImplementation = consumerServiceImpl;
         LOG.info("Default consumer service implementation: " + consumerServiceImpl);
-        consumerServiceInternal.hello();
-        consumerServiceExternal.hello();
-        consumerServiceParallel.hello();
     }
 
     private final ConsumerService consumerServiceInternal;

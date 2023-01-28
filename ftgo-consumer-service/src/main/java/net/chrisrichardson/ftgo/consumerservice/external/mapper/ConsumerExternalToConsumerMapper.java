@@ -7,7 +7,9 @@ import net.chrisrichardson.ftgo.domain.Consumer;
 public class ConsumerExternalToConsumerMapper {
 
     public static Consumer toDomain(ConsumerExternal consumerExternal) {
-        return new Consumer(new PersonName(consumerExternal.getFirstName(), consumerExternal.getLastName()));
+        Consumer consumer = new Consumer(new PersonName(consumerExternal.getFirstName(), consumerExternal.getLastName()));
+        consumer.setId(consumerExternal.getId());
+        return consumer;
     }
 
 }

@@ -38,4 +38,8 @@ public class Consumer {
   public PersonName getName() {
     return name;
   }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
 }
