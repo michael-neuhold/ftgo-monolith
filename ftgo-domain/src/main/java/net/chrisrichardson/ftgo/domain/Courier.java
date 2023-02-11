@@ -37,7 +37,6 @@ public class Courier {
 
   public void noteAvailable() {
     this.available = true;
-
   }
 
   public void addAction(Action action) {
@@ -67,4 +66,25 @@ public class Courier {
   public List<Action> actionsForDelivery(Order order) {
     return plan.actionsForDelivery(order);
   }
+
+  public PersonName getName() {
+    return name;
+  }
+
+  public Address getAddress() {
+    return address;
+  }
+
+  public Boolean getAvailable() {
+    return available;
+  }
+
+  public void setAvailable(Boolean available) {
+    this.available = available;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
 }

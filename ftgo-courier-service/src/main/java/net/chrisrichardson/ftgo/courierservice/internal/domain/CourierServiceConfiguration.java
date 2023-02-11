@@ -1,5 +1,6 @@
-package net.chrisrichardson.ftgo.courierservice.domain;
+package net.chrisrichardson.ftgo.courierservice.internal.domain;
 
+import net.chrisrichardson.ftgo.courierservice.internal.CourierServiceInternalImpl;
 import net.chrisrichardson.ftgo.domain.CourierRepository;
 import net.chrisrichardson.ftgo.domain.DomainConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -11,8 +12,8 @@ import org.springframework.context.annotation.Import;
 public class CourierServiceConfiguration {
 
   @Bean
-  public CourierService courierService(CourierRepository courierRepository) {
-    return new CourierService(courierRepository);
+  public CourierServiceInternalImpl courierService(CourierRepository courierRepository) {
+    return new CourierServiceInternalImpl(courierRepository);
   }
 
 }
