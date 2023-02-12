@@ -5,5 +5,10 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConfigurationProperties(prefix = "courier-service")
-public class ConfigProperties {
+public class CourierServiceExtractionConfigProperties {
+
+    private CourierServiceImpl implementation;
+
+    private String courierMicroServiceBaseUrl;
+
 }

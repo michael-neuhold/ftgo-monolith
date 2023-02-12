@@ -52,4 +52,9 @@ public class CourierServiceExternalImpl implements CourierService {
     public void updateAvailability(long courierId, boolean available) {
         // TODO
     }
+
+    @Override
+    public Courier findCourierById(long courierId) {
+        return null;
+    }
 }

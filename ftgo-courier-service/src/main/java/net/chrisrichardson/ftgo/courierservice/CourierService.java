@@ -12,4 +12,6 @@ public interface CourierService {
 
     void updateAvailability(long courierId, boolean available);
 
+    Courier findCourierById(long courierId);
+
 }

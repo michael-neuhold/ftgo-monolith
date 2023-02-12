@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConfigurationProperties(prefix = "consumer-service")
-public class ConfigProperties {
+public class ConsumerServiceExtractionConfigProperties {
 
     private ConsumerServiceImpl implementation;
 

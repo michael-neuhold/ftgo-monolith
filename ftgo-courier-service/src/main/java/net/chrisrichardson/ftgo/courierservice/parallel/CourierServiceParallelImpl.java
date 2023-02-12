@@ -27,4 +27,9 @@ public class CourierServiceParallelImpl implements CourierService {
         // TODO
     }
 
+    @Override
+    public Courier findCourierById(long courierId) {
+        return null;
+    }
+
 }
