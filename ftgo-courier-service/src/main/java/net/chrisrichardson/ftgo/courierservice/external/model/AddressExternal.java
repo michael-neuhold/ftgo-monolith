@@ -2,6 +2,9 @@ package net.chrisrichardson.ftgo.courierservice.external.model;
 
 public class AddressExternal {
 
+    public AddressExternal() {
+    }
+
     public AddressExternal(String street, String city, String state, String zip) {
         this.street = street;
         this.city = city;
@@ -9,10 +12,10 @@ public class AddressExternal {
         this.zip = zip;
     }
 
-    private final String street;
-    private final String city;
-    private final String state;
-    private final String zip;
+    private String street;
+    private String city;
+    private String state;
+    private String zip;
 
     public String getStreet() {
         return street;

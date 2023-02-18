@@ -7,4 +7,5 @@ repositories {
 dependencies {
     compile 'mysql:mysql-connector-java:5.1.39'
     compile 'commons-lang:commons-lang:2.6'
+    implementation 'io.sentry:sentry-spring-boot-starter:6.13.1'
 }

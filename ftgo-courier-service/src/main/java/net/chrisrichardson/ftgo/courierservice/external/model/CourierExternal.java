@@ -2,6 +2,9 @@ package net.chrisrichardson.ftgo.courierservice.external.model;
 
 public class CourierExternal {
 
+    public CourierExternal() {
+    }
+
     public CourierExternal(Long id, String firstName, String lastName, boolean availability, AddressExternal address) {
         this.id = id;
         this.firstName = firstName;
@@ -38,5 +41,25 @@ public class CourierExternal {
 
     public AddressExternal getAddress() {
         return address;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setAvailability(boolean availability) {
+        this.availability = availability;
+    }
+
+    public void setAddress(AddressExternal address) {
+        this.address = address;
     }
 }

@@ -41,6 +41,7 @@ public class ConsumerServiceClient {
     public Optional<ConsumerExternal> findById(Long id) {
         LOG.info("Send request 'find by id' to external consumer service at '{}'.", CONSUMERS_RESOURCE);
 
+        LOG.info("Path: " + CONSUMERS_RESOURCE + "/" + id);
         ResponseEntity<ConsumerExternal> response =
                 REST_TEMPLATE.getForEntity(CONSUMERS_RESOURCE + "/" + id, ConsumerExternal.class);
 

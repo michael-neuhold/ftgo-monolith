@@ -43,16 +43,8 @@ public class Courier {
     plan.add(action);
   }
 
-  public void cancelDelivery(Order order) {
-    plan.removeDelivery(order);
-  }
-
   public boolean isAvailable() {
     return available;
-  }
-
-  public Plan getPlan() {
-    return plan;
   }
 
   public Long getId() {
@@ -73,10 +65,6 @@ public class Courier {
 
   public Address getAddress() {
     return address;
-  }
-
-  public Boolean getAvailable() {
-    return available;
   }
 
   public void setAvailable(Boolean available) {

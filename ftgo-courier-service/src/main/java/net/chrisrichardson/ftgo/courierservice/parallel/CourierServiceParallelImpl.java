@@ -3,9 +3,13 @@ package net.chrisrichardson.ftgo.courierservice.parallel;
 import net.chrisrichardson.ftgo.common.Address;
 import net.chrisrichardson.ftgo.common.PersonName;
 import net.chrisrichardson.ftgo.courierservice.CourierService;
+import net.chrisrichardson.ftgo.domain.Action;
 import net.chrisrichardson.ftgo.domain.Courier;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @Qualifier("courier-service-parallel")
@@ -28,8 +32,26 @@ public class CourierServiceParallelImpl implements CourierService {
     }
 
     @Override
-    public Courier findCourierById(long courierId) {
+    public Optional<Courier> findCourierById(long courierId) {
+        // TODO
         return null;
+    }
+
+    @Override
+    public List<Courier> findAll() {
+        // TODO
+        return null;
+    }
+
+    @Override
+    public List<Courier> findAllAvailable() {
+        // TODO
+        return null;
+    }
+
+    @Override
+    public void addAction(Courier courier, Action action) {
+        // TODO
     }
 
 }

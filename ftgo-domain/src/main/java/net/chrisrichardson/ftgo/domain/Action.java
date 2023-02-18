@@ -37,6 +37,13 @@ public class Action {
     return new Action(ActionType.DROPOFF, order, deliveryTime);
   }
 
+  public LocalDateTime getTime() {
+    return time;
+  }
+
+  public Order getOrder() {
+    return order;
+  }
 
   public ActionType getType() {
     return type;

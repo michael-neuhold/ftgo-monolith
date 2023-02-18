@@ -7,7 +7,9 @@ import net.chrisrichardson.ftgo.courierservice.external.client.CourierServiceCli
 import net.chrisrichardson.ftgo.courierservice.external.exception.CourierServiceExternalException;
 import net.chrisrichardson.ftgo.courierservice.external.mapper.CourierExternalToCourierMapper;
 import net.chrisrichardson.ftgo.courierservice.external.mapper.CourierToCourierExternalMapper;
+import net.chrisrichardson.ftgo.courierservice.external.model.ActionExternal;
 import net.chrisrichardson.ftgo.courierservice.external.model.CourierExternal;
+import net.chrisrichardson.ftgo.domain.Action;
 import net.chrisrichardson.ftgo.domain.Consumer;
 import net.chrisrichardson.ftgo.domain.Courier;
 import org.slf4j.Logger;
@@ -16,7 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static net.chrisrichardson.ftgo.courierservice.external.constants.LogConstants.EXTERNAL_COURIER_SERVICE;
 
@@ -50,11 +54,46 @@ public class CourierServiceExternalImpl implements CourierService {
 
     @Override
     public void updateAvailability(long courierId, boolean available) {
-        // TODO
+        LOG.info(EXTERNAL_COURIER_SERVICE + ": find courier by id and update availability");
+        Optional<CourierExternal> courierToUpdate = courierServiceClient.findById(courierId);
+        if (courierToUpdate.isPresent()) {
+            courierToUpdate.get().setAvailability(available);
+            courierServiceClient.update(courierToUpdate.get());
+        }
     }
 
     @Override
-    public Courier findCourierById(long courierId) {
-        return null;
+    public Optional<Courier> findCourierById(long courierId) {
+        LOG.info(EXTERNAL_COURIER_SERVICE + ": find courier by id.");
+        return courierServiceClient.findById(courierId)
+                .map(CourierExternalToCourierMapper::toDomain);
     }
+
+    @Override
+    public List<Courier> findAll() {
+        return courierServiceClient.findAll().stream()
+                .map(CourierExternalToCourierMapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Courier> findAllAvailable() {
+        return courierServiceClient.findAll().stream()
+                .map(CourierExternalToCourierMapper::toDomain)
+                .filter(Courier::isAvailable)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void addAction(Courier courier, Action action) {
+        courierServiceClient.createActionForCourier(
+                new ActionExternal(
+                        action.getType(),
+                        action.getTime(),
+                        action.getOrder().getId(),
+                        courier.getId()
+                )
+        );
+    }
+
 }

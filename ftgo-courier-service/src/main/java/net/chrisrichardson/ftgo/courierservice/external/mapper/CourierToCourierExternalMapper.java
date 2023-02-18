@@ -12,7 +12,7 @@ public class CourierToCourierExternalMapper {
                 courier.getId(),
                 courier.getName().getFirstName(),
                 courier.getName().getLastName(),
-                courier.getAvailable(),
+                true,
                 toExternal(courier.getAddress()));
     }
 

@@ -2,6 +2,7 @@ package net.chrisrichardson.ftgo.orderservice.domain;
 
 import io.micrometer.core.instrument.MeterRegistry;
 import net.chrisrichardson.ftgo.consumerservice.ConsumerService;
+import net.chrisrichardson.ftgo.courierservice.CourierService;
 import net.chrisrichardson.ftgo.domain.*;
 import net.chrisrichardson.ftgo.orderservice.web.MenuItemIdAndQuantity;
 import org.slf4j.Logger;
@@ -26,20 +27,22 @@ public class OrderService {
 
   private Optional<MeterRegistry> meterRegistry;
 
-  private ConsumerService consumerService;
-  private CourierRepository courierRepository;
+  private final ConsumerService consumerService;
+
+  private final CourierService courierService;
   private Random random = new Random();
 
   public OrderService(OrderRepository orderRepository,
                       RestaurantRepository restaurantRepository,
                       Optional<MeterRegistry> meterRegistry,
-                      ConsumerService consumerService, CourierRepository courierRepository) {
+                      ConsumerService consumerService,
+                      CourierService courierService) {
 
     this.orderRepository = orderRepository;
     this.restaurantRepository = restaurantRepository;
     this.meterRegistry = meterRegistry;
     this.consumerService = consumerService;
-    this.courierRepository = courierRepository;
+    this.courierService = courierService;
   }
 
   @Transactional
@@ -97,15 +100,12 @@ public class OrderService {
 
   public void scheduleDelivery(Order order, LocalDateTime readyBy) {
 
-    // Stupid implementation
-
-    List<Courier> couriers = courierRepository.findAllAvailable();
+    List<Courier> couriers = courierService.findAllAvailable();
     Courier courier = couriers.get(random.nextInt(couriers.size()));
-    courier.addAction(Action.makePickup(order));
-    courier.addAction(Action.makeDropoff(order, readyBy.plusMinutes(30)));
+    courierService.addAction(courier, Action.makePickup(order));
+    courierService.addAction(courier, Action.makeDropoff(order, readyBy.plusMinutes(30)));
 
     order.schedule(courier);
-
   }
 
 

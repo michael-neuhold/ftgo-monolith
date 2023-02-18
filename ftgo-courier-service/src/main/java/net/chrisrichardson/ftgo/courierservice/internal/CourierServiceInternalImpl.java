@@ -1,14 +1,19 @@
 package net.chrisrichardson.ftgo.courierservice.internal;
 
 
+import com.google.common.collect.Lists;
 import net.chrisrichardson.ftgo.common.Address;
 import net.chrisrichardson.ftgo.common.PersonName;
 import net.chrisrichardson.ftgo.courierservice.CourierService;
+import net.chrisrichardson.ftgo.domain.Action;
 import net.chrisrichardson.ftgo.domain.Courier;
 import net.chrisrichardson.ftgo.domain.CourierRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @Qualifier("courier-service-internal")
@@ -43,8 +48,23 @@ public class CourierServiceInternalImpl implements CourierService {
     courierRepository.findById(courierId).get().noteUnavailable();
   }
 
-  public Courier findCourierById(long courierId) {
-    return courierRepository.findById(courierId).get();
+  public Optional<Courier> findCourierById(long courierId) {
+    return courierRepository.findById(courierId);
+  }
+
+  @Override
+  public List<Courier> findAll() {
+    return Lists.newArrayList(courierRepository.findAll());
+  }
+
+  @Override
+  public List<Courier> findAllAvailable() {
+    return Lists.newArrayList(courierRepository.findAllAvailable());
+  }
+
+  @Override
+  public void addAction(Courier courier, Action action) {
+    courier.addAction(action);
   }
 
   @Override
