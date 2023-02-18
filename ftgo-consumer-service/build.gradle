@@ -11,6 +11,8 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
     compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
 
+    implementation 'io.sentry:sentry-spring-boot-starter:6.13.1'
+
     compile 'javax.el:javax.el-api:2.2.5'
 
     testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"

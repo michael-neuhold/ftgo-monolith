@@ -19,6 +19,7 @@ public class CourierToCourierExternalMapper {
     private static AddressExternal toExternal(Address address) {
         return new AddressExternal(
                 address.getStreet1(),
+                address.getStreet2(),
                 address.getCity(),
                 address.getState(),
                 address.getZip()

@@ -16,6 +16,8 @@ dependencies {
     testCompile 'io.rest-assured:spring-mock-mvc:3.0.6'
     testCompile "io.rest-assured:json-path:3.0.6"
 
+    implementation 'io.sentry:sentry-spring-boot-starter:6.13.1'
+
     testCompile project(":ftgo-test-util")
 
 }

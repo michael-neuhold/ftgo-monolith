@@ -27,7 +27,6 @@ public class CourierServiceClient {
 
     private static final RestTemplate REST_TEMPLATE = new RestTemplate();
 
-
     public Optional<CourierExternal> create(CourierExternal courierExternal) {
         LOG.info("Send request 'create courier' to external courier service at '{}'.", COURIERS_RESOURCE);
 
@@ -36,7 +35,7 @@ public class CourierServiceClient {
 
         if (response.getStatusCode().equals(HttpStatus.CREATED)) {
             Optional<CourierExternal> createdCourier =
-                    getCreatedConsumer(response.getHeaders().getLocation());
+                    getCreatedCourier(response.getHeaders().getLocation());
             createdCourier.ifPresent(external -> LOG.info("Courier was created '{}'.", external));
             return createdCourier;
         } else {
@@ -45,13 +44,11 @@ public class CourierServiceClient {
         }
     }
 
-    public Optional<CourierExternal> update(CourierExternal courierExternal) {
+    public void update(CourierExternal courierExternal) {
         LOG.info("Send request 'update courier' to external courier service at '{}'.", COURIERS_RESOURCE);
 
-        CourierExternal response =
-                REST_TEMPLATE.patchForObject(COURIERS_RESOURCE, courierExternal, CourierExternal.class);
-
-        return Optional.ofNullable(response);
+        ResponseEntity<CourierExternal> response =
+                REST_TEMPLATE.postForEntity(COURIERS_RESOURCE, courierExternal, CourierExternal.class);
     }
 
     public Optional<CourierExternal> findById(Long id) {
@@ -75,7 +72,7 @@ public class CourierServiceClient {
                 .collect(Collectors.toList());
     }
 
-    private Optional<CourierExternal> getCreatedConsumer(URI createdCourierLocation) {
+    private Optional<CourierExternal> getCreatedCourier(URI createdCourierLocation) {
         LOG.info("Send request 'get created courier (find by id)' to external courier service at '{}'.",
                 COURIERS_RESOURCE);
 
@@ -94,7 +91,7 @@ public class CourierServiceClient {
 
         if (response.getStatusCode().equals(HttpStatus.OK)) {
             Optional<CourierExternal> courierWithCreatedAction =
-                    getCreatedConsumer(response.getHeaders().getLocation());
+                    getCreatedCourier(response.getHeaders().getLocation());
             courierWithCreatedAction.ifPresent(external -> LOG.info("Action of Courier was created '{}'.", external));
         } else {
             LOG.info("Courier could not be created. Request returned with status code: '{}'.", response.getStatusCode());

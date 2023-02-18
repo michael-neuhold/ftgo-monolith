@@ -23,8 +23,8 @@ public class CourierExternalToCourierMapper {
 
     private static Address toInternal(AddressExternal address) {
         return new Address(
-                address.getStreet(),
-                address.getStreet(),
+                address.getStreet1(),
+                address.getStreet2(),
                 address.getCity(),
                 address.getState(),
                 address.getZip()

@@ -71,6 +71,7 @@ public class CourierServiceExternalImpl implements CourierService {
 
     @Override
     public List<Courier> findAll() {
+        LOG.info(EXTERNAL_COURIER_SERVICE + ": find all couriers.");
         return courierServiceClient.findAll().stream()
                 .map(CourierExternalToCourierMapper::toDomain)
                 .collect(Collectors.toList());
@@ -78,6 +79,7 @@ public class CourierServiceExternalImpl implements CourierService {
 
     @Override
     public List<Courier> findAllAvailable() {
+        LOG.info(EXTERNAL_COURIER_SERVICE + ": find available couriers.");
         return courierServiceClient.findAll().stream()
                 .map(CourierExternalToCourierMapper::toDomain)
                 .filter(Courier::isAvailable)
@@ -86,6 +88,7 @@ public class CourierServiceExternalImpl implements CourierService {
 
     @Override
     public void addAction(Courier courier, Action action) {
+        LOG.info(EXTERNAL_COURIER_SERVICE + ": add action to courier.");
         courierServiceClient.createActionForCourier(
                 new ActionExternal(
                         action.getType(),

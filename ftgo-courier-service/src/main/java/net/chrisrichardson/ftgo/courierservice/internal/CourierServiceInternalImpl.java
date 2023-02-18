@@ -19,7 +19,7 @@ import java.util.Optional;
 @Qualifier("courier-service-internal")
 public class CourierServiceInternalImpl implements CourierService {
 
-  private CourierRepository courierRepository;
+  private final CourierRepository courierRepository;
 
   public CourierServiceInternalImpl(CourierRepository courierRepository) {
     this.courierRepository = courierRepository;
